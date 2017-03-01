@@ -1,5 +1,16 @@
-#def configure_vagrantfile
+import os
 
-#def_create_ubuntu
+import sys
 
-#def_create_centos
+
+def create_vagrant_box(vfile, script):
+    try:
+        print
+
+
+
+
+
+    except Exception as e:
+        print "Error: " + str(e)
+        sys.exit(1)

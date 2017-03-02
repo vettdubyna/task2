@@ -7,6 +7,8 @@ import sys
 
 import re
 
+import os
+
 
 def set_params(path):
     try:
@@ -48,7 +50,6 @@ def define_ip():
     try:
         if raw_input("The default ip for host is 172.17.175.175. Would you like to change it? (yes/no): ") == "yes":
             ip_machine = raw_input("Please enter new IP-address: ")
-            ip_router = ""
             pat = re.compile("^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$")
             if not pat.match(ip_machine):
                 return False
@@ -56,14 +57,14 @@ def define_ip():
                 lst = ip_machine.split(".")
                 ip_router = lst[0] + "." + lst[1] + "." + lst[2] + "." + "1"
 
-                #change ip-adresses in Vagrantfiles
-                replace_text_in_file("../source/machine/Vagrantfile", "172.17.175.175", ip_machine, 1)
-                replace_text_in_file("../source/router/Vagrantfile", "172.17.168.1", ip_router, 1)
+                # change ip-adresses in Vagrantfiles
+                replace_text_in_file("source/machine/Vagrantfile", "172.17.175.175", ip_machine, 1)
+                replace_text_in_file("source/router/Vagrantfile", "172.17.168.1", ip_router, 1)
 
-                #change ip-adresses in bash scripts
-                replace_text_in_file("../scripts/configure_machine.sh", "172.17.168.1", ip_router, 1)
-                replace_text_in_file("../scripts/configure_router.sh", "172.17.168.1", ip_router, 1)
-                replace_text_in_file("../scripts/configure_router.sh", "172.17.175.175", ip_machine, 1)
+                # change ip-adresses in bash scripts
+                replace_text_in_file("scripts/configure_machine.sh", "172.17.168.1", ip_router, 1)
+                replace_text_in_file("scripts/configure_router.sh", "172.17.168.1", ip_router, 1)
+                replace_text_in_file("scripts/configure_router.sh", "172.17.175.175", ip_machine, 1)
                 print ip_machine + "\n" + ip_router
             return True
         else:

@@ -7,6 +7,7 @@ import ConfigParser
 
 from menu_functions.prepare import *
 from scripts.configure_vagrant import *
+from scripts.create_boxes import *
 
 
 if __name__ == "__main__":
@@ -20,6 +21,12 @@ if __name__ == "__main__":
             print "IP-address has been changed"
         else:
             print "IP-addess has been setted by default"
+        print_headers("Create boxes")
+        print "Creating router..."
+        #create_vagrant_box("router", "source/router/Vagrantfile", "scripts/configure_router.sh")
+
+        print "Creating machine..."
+        create_vagrant_box("machine", "source/machine/Vagrantfile", "scripts/configure_machine.sh")
 
     except Exception as e:
         print "Error: " + str(e)

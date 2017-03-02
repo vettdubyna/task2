@@ -26,7 +26,7 @@ if __name__ == "__main__":
         create_vagrant_box("router", "source/router/Vagrantfile", "scripts/configure_router.sh")
 
         print "Creating machine..."
-        create_vagrant_box("machine", "source/machine/Vagrantfile", "scripts/configure_machine.sh")
+        #create_vagrant_box("machine", "source/machine/Vagrantfile", "scripts/configure_machine.sh")
 
     except Exception as e:
         print "Error: " + str(e)

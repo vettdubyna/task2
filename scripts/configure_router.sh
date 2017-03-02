@@ -7,7 +7,7 @@ ifup eth1 && echo "Interface has been enabled"
 yum -y install wget net-tools
 
 #turn off selinux
-sed -i '/SELINUX=enforcing/c \SELINUX=disabled' /etc/sysconfig/selinux
+sed -i '/SELINUX=enforcing/c \SELINUX=disabled' /etc/selinux/config && echo "selinux disabled"
 
 #disable and stopping firewalld
 systemctl stop firewalld.service
@@ -16,7 +16,8 @@ systemctl disable firewalld.service
 ## FIREWALL ##
 
 # Enabling forwarding
-sed -i 's/net.ipv4.ip_forward = 0/net.ipv4.ip_forward = 1/' /etc/sysctl.conf || echo 'net.ipv4.ip_forward = 1' >> /etc/sysctl.conf && sysctl -p && echo "ip_forward OK"
+sed -i 's/net.ipv4.ip_forward = 0/net.ipv4.ip_forward = 1' /etc/sysctl.conf || echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf && sysctl -p && echo "ip_forward OK"
+service network restart
 
 # Here is the place to define some variables
 publicaddr="10.0.2.15"

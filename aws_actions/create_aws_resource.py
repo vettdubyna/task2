@@ -4,6 +4,7 @@ from fabric.api import *
 import boto3
 import sys
 
+
 def create_ec2_instance(params):
     try:
         ec2 = boto3.resource('ec2')

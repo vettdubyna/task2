@@ -23,7 +23,7 @@ if __name__ == "__main__":
             print "IP-addess has been setted by default"
         print_headers("Create boxes")
         print "Creating router..."
-        #create_vagrant_box("router", "source/router/Vagrantfile", "scripts/configure_router.sh")
+        create_vagrant_box("router", "source/router/Vagrantfile", "scripts/configure_router.sh")
 
         print "Creating machine..."
         create_vagrant_box("machine", "source/machine/Vagrantfile", "scripts/configure_machine.sh")

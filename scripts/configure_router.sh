@@ -16,8 +16,7 @@ systemctl disable firewalld.service
 ## FIREWALL ##
 
 # Enabling forwarding
-sed -i 's/net.ipv4.ip_forward = 0/net.ipv4.ip_forward = 1' /etc/sysctl.conf || echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf && sysctl -p && echo "ip_forward OK"
-service network restart
+sed -i '/net.ipv4.ip_forward = 0/c \net.ipv4.ip_forward = 1' /etc/sysctl.conf || echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf && sysctl -p && echo "ip_forward OK"
 
 # Here is the place to define some variables
 publicaddr="10.0.2.15"

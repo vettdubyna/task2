@@ -2,17 +2,18 @@ import os
 
 import sys
 import shutil
+from menu_functions.prepare import *
 
 
-def create_vagrant_box(host, vfile, script):
+def create_vagrant_box(host, vfile, scripts_path):
     try:
         #copy Vagrantfile and script to dest. dir
         cwd = os.getcwd()
         directory = cwd + "/vagrant/" + host + "/"
-        print directory
+        print "Current dir is: " + directory
         os.system("mkdir -p " + directory)
         shutil.copy2(vfile, directory)
-        shutil.copy2(script, directory + "script.sh")
+        generate_unique_script(scripts_path, directory + "script.sh")
 
         #run vagrant box
         os.environ['VAGRANT_CWD'] = directory

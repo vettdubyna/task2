@@ -7,11 +7,13 @@ import os
 import sys
 
 
-def terminate_ec2(ids):
+def terminate_ec2(id):
     try:
         ec2 = boto3.resource('ec2')
         print "Terminating instance..."
-        ids = list(ids)
+        ids = []
+        ids.append(id)
+        print ids
         ec2.instances.filter(InstanceIds=ids).stop()
         ec2.instances.filter(InstanceIds=ids).terminate()
         print "Instance has been terminated!"

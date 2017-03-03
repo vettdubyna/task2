@@ -53,7 +53,10 @@ if __name__ == "__main__":
             clear_box(host_name)
             clear_box(router_name)
             sys.exit(1)
-
+        print "SUMMARY:"
+        print "USER: ubuntu"
+        print "HOSTNAME: " + ec2_ip
+        print "ID: " + ec2_id
     except Exception as e:
         print "Error: " + str(e)
         terminate_ec2(ec2_id)

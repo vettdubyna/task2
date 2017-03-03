@@ -1,0 +1,5 @@
+.idea/*
+vagrant/*
+backups/*
+keys/my-key-name.pem
+source/host/create_ssh.sh

@@ -29,23 +29,23 @@ if __name__ == "__main__":
         else:
             print "IP-address has been set by default"
 
-        if False:
-            print_headers("Create EC2 instance")
-            try:
-                ec2_id = create_ec2_instance(ec2_params)
-                ec2_ip = get_ec2_ip(ec2_id)
-                preparing_instance(ec2_ip, "ubuntu", "keys/" + ec2_params["key_name"] + ".pem")
-                print ec2_ip, ec2_id
-            except Exception as e:
-                print "Error: " + str(e)
-                terminate_ec2(ec2_id)
-                sys.exit(1)
+        print_headers("Create EC2 instance")
+        try:
+            ec2_id = create_ec2_instance(ec2_params)
+            ec2_ip = get_ec2_ip(ec2_id)
+            preparing_instance(ec2_ip, "ubuntu", "keys/" + ec2_params["key_name"] + ".pem")
+            print ec2_ip, ec2_id
+        except Exception as e:
+            print "Error: " + str(e)
+            terminate_ec2(ec2_id)
+            sys.exit(1)
 
         print_headers("Create boxes")
         try:
             print "Creating router..."
-            #create_vagrant_box(router_name, "source/router/Vagrantfile", "source/router/")
+            create_vagrant_box(router_name, "source/router/Vagrantfile", "source/router/")
             print "Creating host..."
+            generate_ssh_script("ubuntu", ec2_ip, "8154", "source/host/create_ssh.sh")
             create_vagrant_box(host_name, "source/host/Vagrantfile", "source/host/")
         except Exception as e:
             print "Error: " + str(e)

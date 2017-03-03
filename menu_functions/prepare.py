@@ -74,6 +74,17 @@ def define_ip():
         sys.exit(1)
 
 
+# Generate script for ssh connection
+def generate_ssh_script(user, ip, port, path):
+    try:
+        data = "ssh -R " + port + ":localhost:22 " + user + "@" + ip + " -f -N"
+        with open(path, 'w+') as f:
+            f.write(data)
+    except Exception as e:
+        print "Error: " + str(e)
+        sys.exit(1)
+
+
 # Function for creating the unique script from a box of scripts
 def generate_unique_script(path_to_scripts, result_path):
     try:
@@ -91,3 +102,4 @@ def generate_unique_script(path_to_scripts, result_path):
     except Exception as e:
         print "Error: " + str(e)
         sys.exit(1)
+

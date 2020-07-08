@@ -11,6 +11,6 @@ steps:
   DOCKER_USERNAME:
     from_secret: username
   commands:
-    - echo $${DOCKER_USERNAME}
+    - echo $DOCKER_USERNAME
     - docker build -t quay.io/vdubyna/test-img:latest .
 

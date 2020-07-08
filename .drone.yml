@@ -26,3 +26,4 @@ name: password
 get:
   path: docker
   name: password
+

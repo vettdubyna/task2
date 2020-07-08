@@ -11,9 +11,18 @@ steps:
     GOOS: linux
     DOCKER_USERNAME:
       from_secret: username
+    PASSWORD:
+      from_secret: password
   commands:
     - echo $GOOS
     - echo $$DOCKER_USERNAME
     - echo $DOCKER_USERNAME
+    - echo $PASSWORD
     - docker build -t quay.io/vdubyna/test-img:latest .
 
+---
+kind: secret
+name: password
+get:
+  path: docker
+  name: password

@@ -2,7 +2,8 @@
 kind: pipeline
 type: kubernetes
 name: default
-
+metadata:
+  namespace: drone
 steps:
 - name: build
   image: docker:18.09

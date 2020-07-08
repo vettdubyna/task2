@@ -8,9 +8,12 @@ steps:
 - name: build
   image: docker:18.09
   environment:
-  DOCKER_USERNAME:
-    from_secret: username
+    GOOS: linux
+    DOCKER_USERNAME:
+      from_secret: username
   commands:
+    - echo $GOOS
+    - echo $$DOCKER_USERNAME
     - echo $DOCKER_USERNAME
     - docker build -t quay.io/vdubyna/test-img:latest .
 

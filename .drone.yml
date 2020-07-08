@@ -1,7 +1,7 @@
 ---
 kind: pipeline
 type: kubernetes
-name: default
+name: drone
 
 steps:
 - name: build

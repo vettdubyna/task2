@@ -1,9 +1,3 @@
-###################################################################################################
-## SECRETS REQUIRED:
-## - docker_username : Docker login credentials to push image
-## - docker_password : Docker login credentials to push image
-## - slack_webhook   : Slack notification webhook
-###################################################################################################
 ---
 kind: pipeline
 type: kubernetes
@@ -12,9 +6,6 @@ name: default
 steps:
 - name: build
   image: docker:18.09
-  volumes:
-    - name: docker
-      path: /var/run/docker.sock
   commands:
     - docker build -t quay.io/vdubyna/test-img:latest .
 

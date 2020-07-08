@@ -10,9 +10,11 @@ steps:
   environment:
     GOOS: linux
     DOCKER_USERNAME:
-      from_secret: username
+      from_secret: some_secret_var
     PASSWORD:
       from_secret: password
+    TICTRAC_USER:
+      from_secret: username
   commands:
     - echo $GOOS
     - echo $$DOCKER_USERNAME
@@ -27,3 +29,9 @@ get:
   path: docker
   name: password
 
+---
+kind: secret
+name: username
+get:
+  path: tictrac
+  name: username

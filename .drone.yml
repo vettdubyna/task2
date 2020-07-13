@@ -9,30 +9,27 @@ steps:
   image: docker:18.09
   environment:
     GOOS: linux
-    DOCKER_USERNAME:
-      from_secret: some_secret_var
-    PASSWORD:
-      from_secret: password
-    TICTRAC_USER:
-      from_secret: username
+    DOCKER_PASSWORD:
+      from_secret: docker-password
+    SLACK_WEBHOOK:
+      from_secret: slack-webhook
   commands:
     - echo $GOOS
-    - echo $$DOCKER_USERNAME
-    - echo $DOCKER_USERNAME
-    - echo $PASSWORD
-    - echo $TICTRAC_USER
+    - echo $$DOCKER_PASSWORD
+    - echo $DOCKER_PASSWORD
+    - echo $SLACK_WEBHOOK
     - docker build -t quay.io/vdubyna/test-img:latest .
 
 ---
 kind: secret
-name: password
+name: docker-password
 get:
-  path: docker
+  path: drone-docker
   name: password
 
 ---
 kind: secret
-name: username
+name: slack-webhook
 get:
-  path: tictrac
-  name: username
+  path: drone-slack
+  name: text
